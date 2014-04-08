@@ -19,7 +19,7 @@ namespace :slack do
     if branch.nil?
       announcement = "#{announced_deployer} is deploying #{slack_application} to #{announced_stage}"
     else
-      announcement = "#{announced_deployer} is deploying branch/revision #{branch} of #{slack_application} to #{announced_stage}"
+      announcement = "#{announced_deployer} is deploying #{slack_application}/#{branch} to #{announced_stage}"
     end
 
     # Parse the API url and create an SSL connection
