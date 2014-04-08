@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ['Lucian Cesca', "Joshua Nichols", "Justin McNally"]
-  s.date = "2014-04-8"
+  s.date = "2014-04-08"
   s.description = "Announce capistrano deploys to slack"
   s.email = "lucian@healthfinch.com josh@technicalpickles.com justin@kohactive.com"
   s.extra_rdoc_files = [
