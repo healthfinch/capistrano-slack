@@ -8,10 +8,10 @@ Gem::Specification.new do |s|
   s.version = "1.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Joshua Nichols", "Justin McNally"]
-  s.date = "2012-12-10"
+  s.authors = ['Lucian Cesca', "Joshua Nichols", "Justin McNally"]
+  s.date = "2014-04-8"
   s.description = "Announce capistrano deploys to slack"
-  s.email = "josh@technicalpickles.com justin@kohactive.com"
+  s.email = "lucian@healthfinch.com josh@technicalpickles.com justin@kohactive.com"
   s.extra_rdoc_files = [
     "LICENSE",
     "README.markdown"
@@ -40,7 +40,7 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<capistrano>, ["< 3.0.0"])
+      s.add_runtime_dependency(%q<capistrano>, [">= 3.1.0"])
       s.add_runtime_dependency(%q<capistrano-log_with_awesome>, ["~> 0.0.2"])
       s.add_development_dependency(%q<rspec>, [">= 2.5.0"])
       s.add_development_dependency(%q<bundler>, [">= 1.0.9"])
@@ -49,7 +49,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<yard>, [">= 0"])
       s.add_development_dependency(%q<bluecloth>, [">= 0"])
     else
-      s.add_dependency(%q<capistrano>, ["< 3.0.0"])
+      s.add_dependency(%q<capistrano>, [">= 3.1.0"])
       s.add_dependency(%q<capistrano-log_with_awesome>, ["~> 0.0.2"])
       s.add_dependency(%q<rspec>, [">= 2.5.0"])
       s.add_dependency(%q<bundler>, [">= 1.0.9"])
@@ -59,7 +59,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<bluecloth>, [">= 0"])
     end
   else
-    s.add_dependency(%q<capistrano>, ["< 3.0.0"])
+    s.add_dependency(%q<capistrano>, [">= 3.1.0"])
     s.add_dependency(%q<capistrano-log_with_awesome>, ["~> 0.0.2"])
     s.add_dependency(%q<rspec>, [">= 2.5.0"])
     s.add_dependency(%q<bundler>, [">= 1.0.9"])
