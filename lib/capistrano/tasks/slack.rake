@@ -38,6 +38,35 @@ namespace :slack do
     set(:start_time, Time.now)
   end
 
+  task :failed do
+    slack_token = fetch(:slack_token)
+    slack_room = fetch(:slack_room)
+    slack_emoji = fetch(:slack_emoji) || ":ghost:"
+    slack_username = fetch(:slack_username) || "deploybot"
+    slack_application = fetch(:slack_application) || application
+    slack_subdomain = fetch(:slack_subdomain)
+    return if slack_token.nil?
+    announced_deployer = fetch(:slack_deployer) || fetch(:deployer)
+    end_time = Time.now
+    start_time = fetch(:start_time)
+    elapsed = end_time.to_i - start_time.to_i
+  
+    msg = "#{announced_deployer} had a deploy FAIL of #{slack_application} in #{elapsed} seconds."
+    
+    # Parse the URI and handle the https connection
+    uri = URI.parse("https://#{slack_subdomain}.slack.com/services/hooks/incoming-webhook?token=#{slack_token}")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+    # Create the post request and setup the form data
+    request = Net::HTTP::Post.new(uri.request_uri)
+    request.set_form_data(:payload => {'channel' => slack_room, 'username' => slack_username, 'text' => msg, "icon_emoji" => slack_emoji}.to_json)
+    
+    # Make the actual request to the API
+    response = http.request(request)
+  end
+
   task :finished do
     begin
       slack_token = fetch(:slack_token)
@@ -78,3 +107,4 @@ set :deployer, ENV['GIT_AUTHOR_NAME'] || `git config user.name`.chomp
 
 before 'deploy', 'slack:starting'
 after 'deploy', 'slack:finished'
+after 'deploy:failed', 'slack:failed'
