@@ -1,5 +1,7 @@
 # Capistrano Slack
 
+###Updated for Capistrano 3.1
+
 ## Install
 
 Best way to install Capistrano Slack intergration is via Bundler.  
@@ -27,6 +29,7 @@ set :slack_subdomain, "kohactive" # if your subdomain is kohactive.slack.com
 set :slack_application, "Rocketman"
 set :slack_username, "Elton John"
 set :slack_emoji, ":rocket:"
+set :slack_deployer, 'Dude'
 ```
 
 You can obtain your `webhook_token` from the integrations section of the team page in Slack.  
