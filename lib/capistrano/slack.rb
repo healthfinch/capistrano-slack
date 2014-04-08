@@ -8,7 +8,6 @@ module Capistrano
       configuration.load do
 
         before 'deploy', 'slack:starting'
-        before 'deploy:migrations', 'slack:starting'
         after 'deploy',  'slack:finished'
 
         set :deployer do
