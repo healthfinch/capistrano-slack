@@ -1,1 +1,1 @@
-load File.expand_path("../tasks/rbenv.rake", __FILE__)
+load File.expand_path("../tasks/slack.rake", __FILE__)
