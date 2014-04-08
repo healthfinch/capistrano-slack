@@ -73,9 +73,7 @@ namespace :slack do
   end
 end
 
-set :deployer do
-  ENV['GIT_AUTHOR_NAME'] || `git config user.name`.chomp
-end
+set :deployer, ENV['GIT_AUTHOR_NAME'] || `git config user.name`.chomp
 
 before 'deploy', 'slack:starting'
 after 'deploy', 'slack:finished'
