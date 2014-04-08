@@ -11,7 +11,7 @@ namespace :slack do
     slack_application = fetch(:slack_application) || application
     slack_subdomain = fetch(:slack_subdomain)
     return if slack_token.nil?
-    announced_deployer = fetch(:deployer)
+    announced_deployer = fetch(:slack_deployer) || fetch(:deployer)
     announced_stage = fetch(:stage)
 
     branch = fetch(:branch)
@@ -19,7 +19,7 @@ namespace :slack do
     if branch.nil?
       announcement = "#{announced_deployer} is deploying #{slack_application} to #{announced_stage}"
     else
-      announcement = "#{announced_deployer} is deploying #{slack_application}'s #{branch} to #{announced_stage}"
+      announcement = "#{announced_deployer} is deploying branch/revision #{branch} of #{slack_application} to #{announced_stage}"
     end
 
     # Parse the API url and create an SSL connection
@@ -47,7 +47,7 @@ namespace :slack do
       slack_application = fetch(:slack_application) || application
       slack_subdomain = fetch(:slack_subdomain)
       return if slack_token.nil?
-      announced_deployer = fetch(:deployer)
+      announced_deployer = fetch(:slack_deployer) || fetch(:deployer)
       end_time = Time.now
       start_time = fetch(:start_time)
       elapsed = end_time.to_i - start_time.to_i
