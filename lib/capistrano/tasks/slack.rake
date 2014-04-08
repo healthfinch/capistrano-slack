@@ -12,14 +12,15 @@ namespace :slack do
     slack_subdomain = fetch(:slack_subdomain)
     return if slack_token.nil?
     announced_deployer = fetch(:deployer)
-    announced_stage = fetch(:stage, 'production')
+    announced_stage = fetch(:stage)
 
-    announcement = if fetch(:branch, nil)
-                     "#{announced_deployer} is deploying #{slack_application}'s #{branch} to #{announced_stage}"
-                   else
-                     "#{announced_deployer} is deploying #{slack_application} to #{announced_stage}"
-                   end
-    
+    branch = fetch(:branch)
+
+    if branch.nil?
+      announcement = "#{announced_deployer} is deploying #{slack_application} to #{announced_stage}"
+    else
+      announcement = "#{announced_deployer} is deploying #{slack_application}'s #{branch} to #{announced_stage}"
+    end
 
     # Parse the API url and create an SSL connection
     uri = URI.parse("https://#{slack_subdomain}.slack.com/services/hooks/incoming-webhook?token=#{slack_token}")
