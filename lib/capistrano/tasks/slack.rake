@@ -51,7 +51,7 @@ namespace :slack do
     start_time = fetch(:start_time)
     elapsed = end_time.to_i - start_time.to_i
   
-    msg = "#{announced_deployer} had a deploy FAIL of #{slack_application} in #{elapsed} seconds."
+    msg = "#{announced_deployer} deploy of #{slack_application} FAILED after #{elapsed} seconds."
     
     # Parse the URI and handle the https connection
     uri = URI.parse("https://#{slack_subdomain}.slack.com/services/hooks/incoming-webhook?token=#{slack_token}")
