@@ -51,7 +51,13 @@ namespace :slack do
     start_time = fetch(:start_time)
     elapsed = end_time.to_i - start_time.to_i
   
-    msg = "#{announced_deployer} deploy of #{slack_application} FAILED after #{elapsed} seconds."
+    branch = fetch(:branch)
+
+    if branch.nil?
+      msg = "#{announced_deployer} deploy of #{slack_application} FAILED after #{elapsed} seconds."
+    else
+      msg = "#{announced_deployer} deploy of #{slack_application}/#{branch} FAILED after #{elapsed} seconds."
+    end
     
     # Parse the URI and handle the https connection
     uri = URI.parse("https://#{slack_subdomain}.slack.com/services/hooks/incoming-webhook?token=#{slack_token}")
@@ -81,7 +87,13 @@ namespace :slack do
       start_time = fetch(:start_time)
       elapsed = end_time.to_i - start_time.to_i
     
-      msg = "#{announced_deployer} deployed #{slack_application} successfully in #{elapsed} seconds."
+      branch = fetch(:branch)
+
+      if branch.nil?
+        msg = "#{announced_deployer} deployed #{slack_application} successfully in #{elapsed} seconds."
+      else
+        msg = "#{announced_deployer} deployed #{slack_application}/#{branch} successfully in #{elapsed} seconds."
+      end
       
       # Parse the URI and handle the https connection
       uri = URI.parse("https://#{slack_subdomain}.slack.com/services/hooks/incoming-webhook?token=#{slack_token}")
