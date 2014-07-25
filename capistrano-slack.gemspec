@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "capistrano-slack"
-  s.version = "0.0.1"
+  s.version = "0.0.2"
   s.authors = ['Lucian Cesca', "Joshua Nichols", "Justin McNally"]
   s.date = "2014-04-08"
   s.description = "Announce capistrano deploys to slack"
