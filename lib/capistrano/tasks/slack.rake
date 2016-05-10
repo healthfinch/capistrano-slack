@@ -50,15 +50,16 @@ namespace :slack do
     end_time = Time.now
     start_time = fetch(:start_time)
     elapsed = end_time.to_i - start_time.to_i
-  
+
     branch = fetch(:branch)
+    announced_stage = fetch(:stage)
 
     if branch.nil?
-      msg = "#{announced_deployer} deploy of #{slack_application} FAILED after #{elapsed} seconds."
+      msg = "#{announced_deployer} deploy of #{slack_application} to #{announced_stage} FAILED after #{elapsed} seconds."
     else
-      msg = "#{announced_deployer} deploy of #{slack_application}/#{branch} FAILED after #{elapsed} seconds."
+      msg = "#{announced_deployer} deploy of #{slack_application}/#{branch} to #{announced_stage}FAILED after #{elapsed} seconds."
     end
-    
+
     # Parse the URI and handle the https connection
     uri = URI.parse("https://#{slack_subdomain}.slack.com/services/hooks/incoming-webhook?token=#{slack_token}")
     http = Net::HTTP.new(uri.host, uri.port)
@@ -68,7 +69,7 @@ namespace :slack do
     # Create the post request and setup the form data
     request = Net::HTTP::Post.new(uri.request_uri)
     request.set_form_data(:payload => {'channel' => slack_room, 'username' => slack_username, 'text' => msg, "icon_emoji" => slack_emoji}.to_json)
-    
+
     # Make the actual request to the API
     response = http.request(request)
   end
@@ -86,15 +87,16 @@ namespace :slack do
       end_time = Time.now
       start_time = fetch(:start_time)
       elapsed = end_time.to_i - start_time.to_i
-    
+
       branch = fetch(:branch)
+      announced_stage = fetch(:stage)
 
       if branch.nil?
-        msg = "#{announced_deployer} deployed #{slack_application} successfully in #{elapsed} seconds."
+        msg = "#{announced_deployer} deployed #{slack_application} to #{announced_stage} successfully in #{elapsed} seconds."
       else
-        msg = "#{announced_deployer} deployed #{slack_application}/#{branch} successfully in #{elapsed} seconds."
+        msg = "#{announced_deployer} deployed #{slack_application}/#{branch} to #{announced_stage} successfully in #{elapsed} seconds."
       end
-      
+
       # Parse the URI and handle the https connection
       uri = URI.parse("https://#{slack_subdomain}.slack.com/services/hooks/incoming-webhook?token=#{slack_token}")
       http = Net::HTTP.new(uri.host, uri.port)
@@ -104,7 +106,7 @@ namespace :slack do
       # Create the post request and setup the form data
       request = Net::HTTP::Post.new(uri.request_uri)
       request.set_form_data(:payload => {'channel' => slack_room, 'username' => slack_username, 'text' => msg, "icon_emoji" => slack_emoji}.to_json)
-      
+
       # Make the actual request to the API
       response = http.request(request)
 
