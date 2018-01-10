@@ -1,16 +1,16 @@
 Gem::Specification.new do |s|
   s.name = "capistrano-slack"
-  s.version = "0.0.2"
-  s.authors = ['Lucian Cesca', "Joshua Nichols", "Justin McNally"]
-  s.date = "2014-04-08"
+  s.version = "0.0.3"
+  s.authors = ['healthfinch']
+  s.email = ['darkarts@healthfinch.com']
+  s.date = "2018-01-10"
   s.description = "Announce capistrano deploys to slack"
-  s.email = "lucian@healthfinch.com josh@technicalpickles.com justin@kohactive.com"
   s.extra_rdoc_files = [
     "LICENSE",
     "README.markdown"
   ]
   s.files = `git ls-files`.split($/)
-  s.homepage = "http://github.com/healthfinch/capistrano-slack"
+  s.homepage = "https://github.com/healthfinch/capistrano-slack"
   s.require_paths = ["lib"]
   s.summary = "Announce capistrano deploys to slack"
 
