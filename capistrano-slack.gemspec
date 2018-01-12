@@ -14,6 +14,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.summary = "Announce capistrano deploys to slack"
 
-  s.add_runtime_dependency(%q<capistrano>, ["~> 3.1.0"])
+  s.add_runtime_dependency(%q<capistrano>, ["~> 3.4"])
 end
 
