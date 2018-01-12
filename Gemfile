@@ -1,6 +1,6 @@
 source :gemcutter
 
-gem "capistrano", "~> 3.1.0"
+gem "capistrano", ">= 3.4"
 gem "capistrano-log_with_awesome", "~> 0.0.2"
 
 group :development do
