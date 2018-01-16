@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "capistrano-slack"
-  s.version = "0.0.3"
+  s.version = "0.0.4"
   s.authors = ['healthfinch']
   s.email = ['darkarts@healthfinch.com']
   s.date = "2018-01-10"
